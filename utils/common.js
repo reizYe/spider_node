@@ -42,11 +42,19 @@ function connect(res, sql, params,msg) {
                     msg: err
                 };
             } else {
-                var re = {
-                    code: 200,
-                    msg: msg,
-                    data: result
-                };
+                if(msg){
+                    var re = {
+                        code: 200,
+                        msg: msg,
+                        data: result
+                    };
+                }else{
+                    var re = {
+                        code: 200,
+                        data: result
+                    };  
+                }
+
             }
             // 以json形式，把操作结果返回给前台页面   
             res.json(re);

@@ -16,6 +16,9 @@ module.exports = {
     AddSpider: function (req, res, next) {
         spiderModel.AddSpider(req, res, next);
 
+    },
+    getdetail:function(req,res,next){
+        spiderModel.getdetail(req, res, next);
     }
 
 };

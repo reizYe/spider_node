@@ -7,7 +7,7 @@ loginModel.login = function (req, res, next) {
     // var param = req.query || req.params;
     var param = req.body;
     var login_time = common.dateToStr(new Date());
-    var arrParams = [login_time, param.name, param.password];
+    var arrParams = [login_time, param.name, param.pass];
     if (param) {
         common.connect(res, sql, arrParams);
     } else {
@@ -31,7 +31,7 @@ loginModel.code = function (req, res, next) {
     // 保存到session,忽略大小写
    
     // 返回数据直接放入页面元素展示即可
-   
+   res.type('svg');
     res.send(code.data);
 }
 module.exports = loginModel;

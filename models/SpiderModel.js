@@ -7,10 +7,18 @@ spiderModel.SpiderList = function (req, res, next) {
     common.connect(res, sql,msg);
 
 }
+spiderModel.getdetail = function (req, res, next) {
+    var sql = 'select * from spider_app where id=?';
+    var param = req.params;
+    var msg = "";
+    var arrParams = [param.id];
+    common.connect(res, sql,arrParams,msg);
+
+}
 spiderModel.AddSpider = function (req, res, next) {
     var sql = 'insert into spider_app (app_name,app_type,app_description,proxy,cookie,rules) values (?,?,?,?,?,?) ';
 
-    var param = req.body.data;
+    var param = req.body;
     var msg = "添加成功";
     var arrParams = [param.app_name, param.app_type, param.app_description, param.proxy, param.cookie,param.rules];
     common.connect(res, sql, arrParams,msg);
@@ -20,7 +28,7 @@ spiderModel.UpdateSpider = function (req, res, next) {
     var param = req.body;
     var msg = "更新成功";
     var update_time = common.dateToStr(new Date());
-    var arrParams = [param.app_name, param.app_type, param.app_description, param.proxy, param.cookie, update_time, param.id];
+    var arrParams = [param.app_name, param.app_type, param.app_description, param.proxy, param.cookie, update_time, param.Id];
     common.connect(res, sql, arrParams,msg);
 }
 spiderModel.DeleteSpider = function (req, res, next) {
