@@ -41,7 +41,13 @@ function connect(res, sql, params,msg) {
                     code: 400,
                     msg: err
                 };
-            } else {
+            } else if(!result.affectedRows&&result.length<1){
+                var re = {
+                    code: 404,
+                    msg: "没有结果"
+                }; 
+            }
+            else {
                 if(msg){
                     var re = {
                         code: 200,

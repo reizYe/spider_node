@@ -2,9 +2,17 @@ var common = require('../utils/common');
 var spiderModel = {};
 
 spiderModel.SpiderList = function (req, res, next) {
-    var sql = 'select * from spider_app';
-    var msg = "查询成功";
-    common.connect(res, sql,msg);
+    var param = req.body;
+    if(param.app_name){
+        var sql = "select * from spider_app where app_name like ?";  
+        var msg = "查询成功";
+        param.app_name = "%"+param.app_name+"%";
+    common.connect(res, sql,param.app_name,msg);
+    }else{
+        var sql = 'select * from spider_app';
+        var msg = "查询成功";
+        common.connect(res, sql,param,msg);
+    }
 
 }
 spiderModel.getdetail = function (req, res, next) {
